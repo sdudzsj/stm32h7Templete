@@ -1,0 +1,48 @@
+#ifndef __AD9850_H
+
+#define __AD9850_H
+
+#include "main.h"
+
+#define u8 uint8_t
+#define u32 uint32_t
+
+#define CLOCK_NUM 4294967295u/125000000 //125MHz??(4294967296 = 2^32)
+
+//CLK_PB7
+#define CLK_GPIO_PORT 		GPIOA
+#define CLK_GPIO_PIN 			GPIO_PIN_4
+
+//FU_UD_PB6
+#define FU_UD_GPIO_PORT 	GPIOA
+#define FU_UD_GPIO_PIN 		GPIO_PIN_5
+
+//DATA_PB5
+#define DATA_GPIO_PORT 		GPIOA
+#define DATA_GPIO_PIN 		GPIO_PIN_6
+
+//RES_PB0
+#define RES_GPIO_PORT 		GPIOA
+#define RES_GPIO_PIN 			GPIO_PIN_7
+
+#define CLK_LOW 		HAL_GPIO_WritePin(CLK_GPIO_PORT,CLK_GPIO_PIN,GPIO_PIN_RESET)
+#define CLK_HIGH		HAL_GPIO_WritePin(CLK_GPIO_PORT,CLK_GPIO_PIN,GPIO_PIN_SET)
+
+#define RES_LOW		 	HAL_GPIO_WritePin(RES_GPIO_PORT, RES_GPIO_PIN,GPIO_PIN_RESET)
+#define RES_HIGH 		HAL_GPIO_WritePin(RES_GPIO_PORT, RES_GPIO_PIN,GPIO_PIN_SET)
+
+#define FU_UD_LOW 	HAL_GPIO_WritePin(FU_UD_GPIO_PORT, FU_UD_GPIO_PIN ,GPIO_PIN_RESET)
+#define FU_UD_HIGH	HAL_GPIO_WritePin(FU_UD_GPIO_PORT, FU_UD_GPIO_PIN ,GPIO_PIN_SET)
+
+#define DATA_LOW 		HAL_GPIO_WritePin(DATA_GPIO_PORT, DATA_GPIO_PIN,GPIO_PIN_RESET)
+#define DATA_HIGH		HAL_GPIO_WritePin(DATA_GPIO_PORT, DATA_GPIO_PIN,GPIO_PIN_SET)
+
+#define DELAY HAL_Delay(5)
+
+void AD9850_GPIO_Config(void);
+	
+void AD9850_Serial_Reset(void);
+	
+void AD9850_Serial_Write(double frequence, u8 phase);
+
+#endif
